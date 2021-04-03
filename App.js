@@ -1,17 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { Provider as PaperProvider } from "react-native-paper";
-import PushNotification from 'react-native-push-notification'
+import { Provider as PaperProvider } from 'react-native-paper';
+import { ScrollView } from 'react-native';
 
-import theme from "./CustomProperties/Themes";
-import MainScreen from "./Screens/MainScreen";
-import TopBar from "./Components/TopBar";
+import theme from './CustomProperties/Themes';
+import TopBar from './Components/TopBar';
+import CustomCard from './Components/Card';
+
+import getResults from './actions/resultsAction';
 
 export default function App() {
+  const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    // only on first load
+    getResults(setResults);
+    const interval = setInterval(() => {
+      getResults(setResults);
+    }, 5 * 60 * 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <PaperProvider theme={theme}>
       <TopBar />
-      <MainScreen />
+      <ScrollView>
+        {results.map((result) => (
+          <CustomCard
+            key={result.key}
+            title={result.title}
+            content={result.content}
+          />
+        ))}
+      </ScrollView>
     </PaperProvider>
   );
 }

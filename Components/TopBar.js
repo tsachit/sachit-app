@@ -3,8 +3,11 @@ import { Appbar } from "react-native-paper";
 
 const TopBar = () => (
   <Appbar.Header>
-    <Appbar.BackAction />
-    <Appbar.Content title="Material Design Tutorial" subtitle="Building UI" />
+    <Appbar.Content title="Sachit's Personal App" subtitle="Monitoring Resources"
+        style={{
+          textAlign: 'center',
+          margin: 'auto'
+        }}/>
   </Appbar.Header>
 );
 
