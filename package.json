@@ -16,6 +16,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "~0.63.4",
+    "react-native-easy-grid": "^0.2.2",
     "react-native-gesture-handler": "~1.8.0",
     "react-native-paper": "^4.7.2",
     "react-native-push-notification": "^7.2.3",

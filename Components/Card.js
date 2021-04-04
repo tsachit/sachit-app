@@ -1,19 +1,32 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import { Card, Text, Paragraph } from "react-native-paper";
+import { Row, Grid } from "react-native-easy-grid";
 
 const CustomCard = (props) => {
+  const { title, content } = props;
+
+  const displayObject = () => {
+    return (
+      <Grid>
+        {content.map(row => (
+          <Row>
+            {row.map(cell => <Text style={{ width: 'auto', minWidth: (row.length > 3 ? 50 : 100)}}>{cell}</Text>)}
+          </Row>
+        ))}
+      </Grid>
+    );
+  }
+
   return (
     <React.Fragment>
       <Card style={styles.container}>
-        <Card.Content style={{ flexDirection: "row" }}>
-          <Paragraph style={{ marginTop: 15 }}>
-            <Text style={{ fontWeight: "bold" }}>{props.title}</Text>
-          </Paragraph>
-        </Card.Content>
         <Card.Content>
-          <Paragraph style={styles.content}>
-            {props.content}
+          <Paragraph>
+            <Text style={{ fontWeight: "bold" }}>{title}</Text>
+          </Paragraph>
+          <Paragraph style={typeof content === 'object' ? styles.tableContent : styles.content}>
+            {typeof content === 'object' ? displayObject() : content}
           </Paragraph>
         </Card.Content>
         <Card.Content style={styles.horizontalLine} />
@@ -29,7 +42,10 @@ const styles = StyleSheet.create({
     margin: 10
   },
   content: {
-    marginTop: 10,
+    marginBottom: 10,
+  },
+  tableContent: {
+    paddingTop: 100
   },
   horizontalLine: {
     borderBottomColor: "#ccc",
@@ -37,14 +53,5 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
     paddingVertical: 5,
   },
-  action: { flexDirection: "row", paddingTop: 5 },
-});
-
-
-const htmlStyles = StyleSheet.create({
-  div: {
-    fontWeight: '300',
-    color: '#FF3366',
-    display: 'flex'
-  },
+  action: { flexDirection: "row", paddingTop: 5 }
 });
