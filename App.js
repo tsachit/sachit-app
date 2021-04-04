@@ -16,7 +16,7 @@ export default function App() {
     getResults(setResults);
     const interval = setInterval(() => {
       getResults(setResults);
-    }, 5 * 60 * 1000);
+    }, 60 * 60 * 1000); // update in one hour
     return () => {
       clearInterval(interval);
     };

@@ -1,33 +1,24 @@
 import * as React from "react";
-import { StyleSheet } from "react-native";
-import { Card, Text, Paragraph } from "react-native-paper";
-import { Row, Grid } from "react-native-easy-grid";
+import { Text, View, StyleSheet } from 'react-native';
+import { Card } from "react-native-paper";
 
 const CustomCard = (props) => {
   const { title, content } = props;
-
-  const displayObject = () => {
-    return (
-      <Grid>
-        {content.map(row => (
-          <Row>
-            {row.map(cell => <Text style={{ width: 'auto', minWidth: (row.length > 3 ? 50 : 100)}}>{cell}</Text>)}
-          </Row>
-        ))}
-      </Grid>
-    );
-  }
 
   return (
     <React.Fragment>
       <Card style={styles.container}>
         <Card.Content>
-          <Paragraph>
+          <View>
             <Text style={{ fontWeight: "bold" }}>{title}</Text>
-          </Paragraph>
-          <Paragraph style={typeof content === 'object' ? styles.tableContent : styles.content}>
-            {typeof content === 'object' ? displayObject() : content}
-          </Paragraph>
+          </View>
+          <View style={styles.content}>
+            { typeof content === 'string' ? <Text>{content}</Text> : content.map((row) => (
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                {row.map((cell) => <Text style={{flex: 1}}>{cell}</Text> )}
+              </View>
+            ))}
+          </View>
         </Card.Content>
         <Card.Content style={styles.horizontalLine} />
       </Card>
@@ -42,10 +33,7 @@ const styles = StyleSheet.create({
     margin: 10
   },
   content: {
-    marginBottom: 10,
-  },
-  tableContent: {
-    paddingTop: 100
+    marginVertical: 10,
   },
   horizontalLine: {
     borderBottomColor: "#ccc",
