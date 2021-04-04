@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 
 import theme from './CustomProperties/Themes';
@@ -24,16 +24,18 @@ export default function App() {
 
   return (
     <PaperProvider theme={theme}>
-      <TopBar handleRefresh={() => getResults(setResults)}/>
-      <ScrollView>
-        {results.map((result) => (
-          <CustomCard
-            key={result.key}
-            title={result.title}
-            content={result.content}
-          />
-        ))}
-      </ScrollView>
+      <View style = {styles.container}>
+        <TopBar handleRefresh={() => getResults(setResults)}/>
+        <ScrollView>
+          {results.map((result) => (
+            <CustomCard
+              key={result.key}
+              title={result.title}
+              content={result.content}
+            />
+          ))}
+        </ScrollView>
+      </View>
     </PaperProvider>
   );
 }
@@ -41,8 +43,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });

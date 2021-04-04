@@ -26,7 +26,7 @@ export default CustomCard;
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 10,
+    margin: 10
   },
   content: {
     marginTop: 10,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   horizontalLine: {
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
-    marginHorizontal: 15,
+    marginHorizontal: 25,
     paddingVertical: 5,
   },
   action: { flexDirection: "row", paddingTop: 5 },

@@ -5,7 +5,7 @@ const TopBar = (props) => {
   const { handleRefresh } = props;
 
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{marginTop: 30}}>
       <Appbar.Content title="Sachit's Personal App" subtitle="Monitoring Resources"
           style={{
             textAlign: 'center',
