@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { ScrollView } from 'react-native';
 
 import theme from './CustomProperties/Themes';
 import TopBar from './Components/TopBar';
@@ -25,7 +24,7 @@ export default function App() {
 
   return (
     <PaperProvider theme={theme}>
-      <TopBar />
+      <TopBar handleRefresh={() => getResults(setResults)}/>
       <ScrollView>
         {results.map((result) => (
           <CustomCard
